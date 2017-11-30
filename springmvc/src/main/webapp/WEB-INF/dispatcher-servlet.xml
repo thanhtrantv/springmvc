@@ -17,4 +17,12 @@
    </bean>
    <mvc:annotation-driven />
 	<mvc:resources mapping = "/*" location = "/" />
+	
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://52.50.85.47:3306/jsp06" />
+		<property name="username" value="admin" />
+		<property name="password" value="admin123" />
+	</bean>
 </beans>

@@ -9,7 +9,7 @@
     <body>
 
         <div class="login-container">
-            <form action="login" method="post">
+            <form action="login/authenticate" method="post">
                 <div class="username-form form-control">
                     <label >User Name</label>
                     <input type="text" id="username" name="username">
