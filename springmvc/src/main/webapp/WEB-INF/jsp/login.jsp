@@ -5,22 +5,24 @@
     <head>
         <title>Login Page</title>
         <link rel="stylesheet" type="text/css" href="styles/app.css">
+        <script type="text/javascript" src="javascript/login.js"></script>
     </head>
     <body>
-
-        <div class="login-container">
-            <form action="login/authenticate" method="post">
-                <div class="username-form form-control">
-                    <label >User Name</label>
-                    <input type="text" id="username" name="username">
-                </div>
-                <div class="password-form  form-control">
-                    <label >Password</label>
-                    <input type="password" id="password" name="password">
-                </div>
-                <input type="submit" value="Login" id="submit" name="submit">
-            </form>
+		<div class="loading-bar">
+            <div class="spiner" ></div>
         </div>
+        <div class="login-container">
+          <div class="username-form form-control">
+          	<label >User Name</label>
+            <input type="text" id="username" name="username">
+          </div>
+          <div class="password-form  form-control">
+              <label >Password</label>
+              <input type="password" id="password" name="password">
+          </div>
+          <button value="Login" id="submit" name="submit" onClick="login()">Login</button>
+        </div>
+        
         <jsp:include page = "footer.jsp" flush = "true" />
     </body>
 </html>
