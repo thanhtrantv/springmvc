@@ -22,7 +22,7 @@ public class LoginController {
 		return "login";
 	}
 	
-	//@ResponseBody
+	@ResponseBody
 	@RequestMapping(value="/authenticate",method=RequestMethod.POST)
 	public String login(@RequestParam("username") String username,@RequestParam("password") String password) {
 		ResponseView view=new ResponseView();
