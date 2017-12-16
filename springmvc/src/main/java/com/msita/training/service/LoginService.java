@@ -12,14 +12,12 @@ public class LoginService {
 	@Autowired
 	private LoginDAO loginDAO;
 	
-	public boolean login(String username,String pass) {
-		boolean rs=false;
-		
+	public User login(String username,String pass) {
+		User rs=null;
 		User user=loginDAO.login(username);
-		
 		if(user!=null) {
 			if(user.getPassword().equals(pass)) {
-				rs=true;
+				rs=user;
 			}
 		}
 		return rs;

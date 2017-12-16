@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.msita.training.service.LoginService;
 import com.msita.training.vo.ResponseView;
+import com.msita.training.vo.User;
 
 @Controller
 @RequestMapping("/login")
@@ -22,18 +23,23 @@ public class LoginController {
 		return "login";
 	}
 	
-	@ResponseBody
+	//@ResponseBody
 	@RequestMapping(value="/authenticate",method=RequestMethod.POST)
-	public String login(@RequestParam("username") String username,@RequestParam("password") String password) {
-		ResponseView view=new ResponseView();
-		boolean rs=loginService.login(username, password);
-		if(rs==true) {
-			view.setCodes("200");
-			view.setMess("Login Successful");
+	public String login(@RequestParam("username") String username,
+			@RequestParam("password") String password) {
+		String page= "home-page";
+		User rs=loginService.login(username, password);
+		if(rs!=null) {
+			if(rs.getRole().equals("BB")) {
+				page="danhsachban";
+			} else if(rs.getRole().equals("QL")) {
+				page="quanly";
+			} else {//PC
+				page="phache";
+			}
 		}else {
-			view.setCodes("403");
-			view.setMess("Login Failure");
+			page="error";
 		}
-		return "home-page";
+		return "redirect:/"+page;
 	}
 }

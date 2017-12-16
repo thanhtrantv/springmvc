@@ -16,7 +16,8 @@ import com.msita.training.vo.User;
 @Repository
 public class LoginDAO extends BaseDAO {
 	public User login(String username) {
-		User user = getJdbcTemplateObject().query("SELECT username,password,fullname from users where username=?",
+		User user = getJdbcTemplateObject().query(
+				"SELECT iduser,password,name,idrole from user where iduser=?",
 				new PreparedStatementSetter() {
 
 					@Override
@@ -29,13 +30,15 @@ public class LoginDAO extends BaseDAO {
 						User user = null;
 						if(ret.next()) {
 							user = new User();
-							user.setUsername(ret.getString("username"));
+							user.setUsername(ret.getString("iduser"));
 							user.setPassword(ret.getString("password"));
-							user.setFullName(ret.getString("fullname"));
+							user.setFullName(ret.getString("name"));
+							user.setRole(ret.getString("idrole"));
 						}
 						return user;
 					}
 				});
+	
 		return user;
 	}
 }

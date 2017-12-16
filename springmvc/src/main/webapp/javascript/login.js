@@ -1,3 +1,4 @@
+
 // alternative to DOMContentLoaded event
 document.onreadystatechange = function () {
     if (document.readyState === "complete") {

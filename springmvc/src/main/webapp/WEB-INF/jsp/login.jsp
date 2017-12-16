@@ -1,28 +1,51 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
     <head>
         <title>Login Page</title>
-        <link rel="stylesheet" type="text/css" href="styles/app.css">
+        <link rel="stylesheet" type="text/css" href="styles/login.css">
         <script type="text/javascript" src="javascript/login.js"></script>
     </head>
     <body>
-		<div class="loading-bar">
+		<div class="loading-bar" style="display:none;">
             <div class="spiner" ></div>
         </div>
-        <div class="login-container">
-          <div class="username-form form-control">
-          	<label >User Name</label>
-            <input type="text" id="username" name="username">
-          </div>
-          <div class="password-form  form-control">
-              <label >Password</label>
-              <input type="password" id="password" name="password">
-          </div>
-          <button value="Login" id="submit" name="submit" onClick="login()">Login</button>
-        </div>
-        
-        <jsp:include page = "footer.jsp" flush = "true" />
+        <div style="width:50%;margin:0 auto;">
+	        <h2>Login</h2>
+	
+			<form action="login/authenticate" method="POST">
+			  <div class="imgcontainer">
+			    <img src="images/img_avatar2.png" alt="Avatar" class="avatar">
+			  </div>
+			
+			  <div class="container">
+			    <label><b>Username</b></label>
+			    <input type="text" placeholder="Enter Username" name="username" required>
+			
+			    <label><b>Password</b></label>
+			    <input type="password" placeholder="Enter Password" name="password" required>
+			        
+			    <button type="submit">Login</button>
+			    <input type="checkbox" checked="checked"> Remember me
+			  </div>
+			
+			  <div class="container" style="background-color:#f1f1f1">
+			    <button type="button" class="cancelbtn">Cancel</button>
+			    <span class="psw">Forgot <a href="#">password?</a></span>
+			  </div>
+			</form>
+		</div>
+		<script>
+			// Get the modal
+			var modal = document.getElementById('id01');
+			
+			// When the user clicks anywhere outside of the modal, close it
+			window.onclick = function(event) {
+			    if (event.target == modal) {
+			        modal.style.display = "none";
+			    }
+			}
+		</script>
     </body>
 </html>
