@@ -38,29 +38,72 @@
 			</div>
 			<div class="wrapper-table">
 				<div class="inner-table">
-					<div class="grid-container">
-						<div class="item item1">
-							<div class="item-header">
-								<div class="table-info-left">
-									<h5>Table 1</h5>
-								</div>
-								<div class="table-status-right">
-									<label>Empty</label>
-								</div>
-							</div>
-							<div class="item-content">
-								
-							</div>
-						</div>
-					  <div class="item item2">2</div>
-					  <div class="item item3">3</div>  
-					  <div class="item item4">4</div>
-					  <div class="item item5">5</div>
-					  <div class="item item6">6</div>
+					<div class="grid-container" id="load-table-content">
+						
+					  
 					</div>
 				</div>
 				
 			</div>
 		</div>
+		<div id="item-templeted" style="display:none;">
+							<div class="item-header">
+								<div class="table-info-left">
+									<h5 class="name-table">Table 1</h5>
+								</div>
+								<div class="table-status-right">
+									<label>Driking</label>
+								</div>
+							</div>
+							<div class="item-content">
+								<div class="time">
+									In: 17:50
+								</div>
+								<div class="table-content">
+									<h5>Table Item</h5>
+									<table id="itemList">
+										<thead>
+											<tr>
+												<th>Order</td>
+												<th>Item Name</td>
+												<th>Price</td>
+												<th>Status</td>
+												<th>Delete</td>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>1</td>
+												<td>Cafe</td>
+												<td>10k</td>
+												<td>done</td>
+												<td><button>delete</button></td>
+											</tr>
+											<tr>
+												<td>2</td>
+												<td>Tea</td>
+												<td>12k</td>
+												<td>Not yet</td>
+												<td><button>delete</button></td>
+											</tr>
+											<tr>
+												<td>3</td>
+												<td>Cafe</td>
+												<td>10k</td>
+												<td>working</td>
+												<td><button>delete</button></td>
+											</tr>
+										</tbody>
+									</table>
+									<div class="sum">
+										Sum: 32k
+									</div>
+								</div>
+								<div class="button-table">
+									<button>Export Bill</button>
+									<button>Add Item</button>
+								</div>
+							</div>
+						</div>
     </body>
 </html>
