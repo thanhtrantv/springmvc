@@ -4,7 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.msita.training.dao.LoginDAO;
-import com.msita.training.vo.User;
+import com.msita.training.entity.User;
+//import com.msita.training.vo.User;
 
 @Service
 public class LoginService {

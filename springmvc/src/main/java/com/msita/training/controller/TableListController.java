@@ -12,7 +12,7 @@ import com.msita.training.service.TableListService;
 import com.msita.training.vo.Table;
 
 @Controller
-@RequestMapping("/danhsachban")
+@RequestMapping("/tableList")
 public class TableListController {
 	
 	@Autowired
@@ -21,7 +21,7 @@ public class TableListController {
 	@RequestMapping(method = RequestMethod.GET)
 	public String goToFormDanhSachBan() {
 		
-		return "danhsachban";
+		return "tableList";
 	}
 	
 	@ResponseBody

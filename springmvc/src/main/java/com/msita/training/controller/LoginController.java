@@ -9,9 +9,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.msita.training.entity.User;
 import com.msita.training.service.LoginService;
 import com.msita.training.vo.ResponseView;
-import com.msita.training.vo.User;
+//import com.msita.training.vo.User;
 
 @Controller
 @RequestMapping("/login")
@@ -32,12 +33,12 @@ public class LoginController {
 		String page= "home-page";
 		User rs=loginService.login(username, password);
 		if(rs!=null) {
-			if(rs.getRole().equals("BB")) {
-				page="danhsachban";
-			} else if(rs.getRole().equals("QL")) {
-				page="quanly";
+			if(rs.getIdrole().equals("BB")) {
+				page="tableList";
+			} else if(rs.getIdrole().equals("QL")) {
+				page="manager";
 			} else {//PC
-				page="phache";
+				page="bartender";
 			}
 		}else {
 			page="error";

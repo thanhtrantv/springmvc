@@ -12,7 +12,7 @@ function getTable(){
         	loadData(JSON.parse(this.response));
         }
     }
-    xhttp.open("GET", "danhsachban/getTables", true);
+    xhttp.open("GET", "tableList/getTables", true);
     xhttp.send();
 }
 
@@ -22,15 +22,11 @@ function loadData(data){
 		var table = document.getElementById('load-table-content');
 		
 		var item= document.getElementById('item-templeted').cloneNode(true);;
-		item.style.display = 'block'
+		item.style.display = 'inline-block'
 		
 		item.getElementsByClassName("name-table")[0]
-		.innerHTML = "Table "+data[i].idTable;
+		.innerHTML = "Table "+data[i].idTable;	
 		
-		
-		table.appendChild(item);
-		
-		
+		table.appendChild(item);		
 	}
-	
 }
