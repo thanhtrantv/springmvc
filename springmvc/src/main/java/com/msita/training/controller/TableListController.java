@@ -8,8 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.msita.training.entity.Table;
 import com.msita.training.service.TableListService;
-import com.msita.training.vo.Table;
+//import com.msita.training.vo.Table;
 
 @Controller
 @RequestMapping("/tableList")
@@ -30,10 +31,10 @@ public class TableListController {
 		List<Table> lst = tableListService.findAllListTable();
 		System.out.println("YYYYYYY:"+lst.size());
 		for(Table table: lst) {
-			if(table.getOrder()!=null) {
-				System.out.println("table::"+table.getOrder().getOrderId());
-				System.out.println("item:"+table.getOrder().getLstOrderItem().get(0).getItemId());
-			}
+//			if(table.getOrder()!=null) {
+//				System.out.println("table::"+table.getOrder().getOrderId());
+//				System.out.println("item:"+table.getOrder().getLstOrderItem().get(0).getItemId());
+//			}
 			
 		}
 		return lst;

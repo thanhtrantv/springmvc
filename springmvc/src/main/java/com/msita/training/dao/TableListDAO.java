@@ -6,32 +6,41 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.PreparedStatementSetter;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import com.msita.training.entity.Table;
 import com.msita.training.vo.Order;
 import com.msita.training.vo.OrderItem;
-import com.msita.training.vo.Table;
+//import com.msita.training.vo.Table;
 
 @Repository
 public class TableListDAO extends BaseDAO{
+	@Autowired
+    private SessionFactory sessionFactory;
+	
+	@Transactional
 	public List<Table> findAllListTable(){
-		List<Table> lst = (List<Table>) getJdbcTemplateObject().query("select * from cafedb.table",new RowMapper<Table>() {
-			@Override
-			public Table mapRow(ResultSet ret, int arg1) throws SQLException {
-				Table table=new Table();
-				table.setIdTable(ret.getInt("idtable"));
-				table.setType(ret.getString("type"));
-				return table;
-			}
+//		List<Table> lst = (List<Table>) getJdbcTemplateObject().query("select * from cafedb.table",new RowMapper<Table>() {
+//			@Override
+//			public Table mapRow(ResultSet ret, int arg1) throws SQLException {
+//				Table table=new Table();
+//				table.setIdTable(ret.getInt("idtable"));
+//				table.setType(ret.getString("type"));
+//				return table;
+//			}
+//			
+//		});
 			
-		});
-			
-		
-		return lst;		
+		List<Table> tables = (List<Table>) sessionFactory.getCurrentSession().createQuery("from Table").list();
+		return tables;		
 	}
 	
 	@SuppressWarnings("unchecked")
