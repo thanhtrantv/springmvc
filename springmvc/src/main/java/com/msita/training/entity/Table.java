@@ -3,11 +3,7 @@ package com.msita.training.entity;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -21,9 +17,9 @@ public class Table implements Serializable{
 	
 	@Column(name="type")
 	private String type;
-	
-	@JsonBackReference
-	@OneToMany(cascade=CascadeType.ALL,mappedBy="table")
+
+	@JsonIgnoreProperties("table")
+	@OneToMany(cascade=CascadeType.ALL,mappedBy="table",fetch = FetchType.EAGER)
 	private List<Order> lstOrder;
 	
 	public List<Order> getLstOrder() {

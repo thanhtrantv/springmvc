@@ -29,18 +29,18 @@ public class User implements Serializable{
 	@Column(name="name")
 	private String fullName;
 	
-	@JsonIgnoreProperties(value="user")
-	//@JsonBackReference
-	@OneToMany(mappedBy="user",fetch=FetchType.EAGER)
-	private List<Order> lstOrder;
-
-	public List<Order> getLstOrder() {
-		return lstOrder;
-	}
-
-	public void setLstOrder(List<Order> lstOrder) {
-		this.lstOrder = lstOrder;
-	}
+//	@JsonIgnoreProperties(value="user")
+//	//@JsonBackReference
+//	@OneToMany(mappedBy="user",fetch=FetchType.EAGER)
+//	private List<Order> lstOrder;
+//
+//	public List<Order> getLstOrder() {
+//		return lstOrder;
+//	}
+//
+//	public void setLstOrder(List<Order> lstOrder) {
+//		this.lstOrder = lstOrder;
+//	}
 
 	public String getFullName() {
 		return fullName;
