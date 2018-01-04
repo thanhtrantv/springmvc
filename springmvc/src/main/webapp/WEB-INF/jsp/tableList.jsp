@@ -58,7 +58,7 @@
 				<div class="time">In: 17:50</div>
 				<div class="table-content">
 					<h5>Table Item</h5>
-					<table id="itemList">
+					<table id="itemList" class="itemList">
 						<thead>
 							<tr>
 								<th>Order</th>
@@ -68,29 +68,7 @@
 								<th>Delete</th>
 							</tr>
 						</thead>
-						<tbody>
-							<tr>
-								<td>1</td>
-								<td>Cafe</td>
-								<td>10k</td>
-								<td>done</td>
-								<td><button>delete</button></td>
-							</tr>
-							<tr>
-								<td>2</td>
-								<td>Tea</td>
-								<td>12k</td>
-								<td>Not yet</td>
-								<td><button>delete</button></td>
-							</tr>
-							<tr>
-								<td>3</td>
-								<td>Cafe</td>
-								<td>10k</td>
-								<td>working</td>
-								<td><button>delete</button></td>
-							</tr>
-						</tbody>
+						
 					</table>
 					<div class="sum">Sum: 32k</div>
 				</div>

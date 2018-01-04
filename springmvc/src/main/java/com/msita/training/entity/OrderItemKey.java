@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.persistence.Column;
 
 public class OrderItemKey implements Serializable{
+	
 	@Column(name="idorder")
 	private String idOrder;
 	

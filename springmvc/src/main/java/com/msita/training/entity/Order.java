@@ -1,5 +1,5 @@
 package com.msita.training.entity;
-
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -10,88 +10,75 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+@SuppressWarnings("serial")
 @Entity
-@Table(name = "order", schema = "cafedb")
-public class Order {
+@javax.persistence.Table(name="order", schema="cafedb")
+public class Order implements Serializable {	
 	@Id
 	@Column(name="idorder")
-	private String orderId;
+	private String idOrder;
 	
-//	///@JsonManagedReference
-//	@ManyToOne(cascade = CascadeType.ALL)
-//	@JoinColumn(name="iduser", nullable = false, insertable = false, updatable = false)
-//	private User user;
-	
-//	@JsonManagedReference
-//	@ManyToOne(cascade = CascadeType.ALL)
-//	@JoinColumn(name="idstatus", nullable = false, insertable = false, updatable = false)
-//	private Status status;
-//
-////	@JsonBackReference
-//	@OneToMany(mappedBy="order")
-//	private List<OrderItem> lstOrderItem;
-	
-	//@JsonManagedReference
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="idtable",referencedColumnName = "idtable",nullable = false, insertable = false, updatable = false)
-	private com.msita.training.entity.Table table;
-	
+	@Column(name="idstatus")
+	private String idStatus;
+
 	@Column(name="sum")
-	private Double sum;
+	private double sum;
+	
+	
+	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="idtable",referencedColumnName="idtable", nullable=false, insertable=false, updatable=false)
+	private Table table;
 
-	public com.msita.training.entity.Table getTable() {
-		return table;
+//	@JsonIgnoreProperties("role")
+//	@ManyToOne(fetch=FetchType.EAGER)
+//	@JoinColumn(name="idUser", nullable=false, insertable=false, updatable=false)
+//	private User user;
+//
+//	@ManyToOne(fetch=FetchType.EAGER)
+//	@JoinColumn(name="idStatus", nullable=false, insertable=false, updatable=false)
+//	private Status statusOrder;
+	
+	@JsonIgnoreProperties("order")
+	@OneToMany(cascade=CascadeType.ALL, mappedBy="order", fetch=FetchType.EAGER)
+	private List<OrderItem> lstOrderItem;
+	
+	
+	
+	
+			/*	 GETTER - SETTER	*/
+		
+	public String getIdOrder() {
+		return idOrder;
 	}
-
-	public void setTable(com.msita.training.entity.Table table) {
-		this.table = table;
+	public String getIdStatus() {
+		return idStatus;
 	}
-
-//	public List<OrderItem> getLstOrderItem() {
-//		return lstOrderItem;
-//	}
-//
-//	public void setLstOrderItem(List<OrderItem> lstOrderItem) {
-//		this.lstOrderItem = lstOrderItem;
-//	}
-//
-//	public Status getStatus() {
-//		return status;
-//	}
-//
-//	public void setStatus(Status status) {
-//		this.status = status;
-//	}
-//
-//	public String getOrderId() {
-//		return orderId;
-//	}
-//
-//	public void setOrderId(String orderId) {
-//		this.orderId = orderId;
-//	}
-//
-//	public User getUser() {
-//		return user;
-//	}
-//
-//	public void setUser(User user) {
-//		this.user = user;
-//	}
-
-	public Double getSum() {
+	public void setIdStatus(String idStatus) {
+		this.idStatus = idStatus;
+	}
+	public void setIdOrder(String idOrder) {
+		this.idOrder = idOrder;
+	}
+	public double getSum() {
 		return sum;
 	}
-
-	public void setSum(Double sum) {
+	public void setSum(double sum) {
 		this.sum = sum;
 	}
-	
-	
+	public Table getTable() {
+		return table;
+	}
+	public void setTable(Table table) {
+		this.table = table;
+	}
+	public List<OrderItem> getLstOrderItem() {
+		return lstOrderItem;
+	}
+	public void setLstOrderItem(List<OrderItem> lstOrderItem) {
+		this.lstOrderItem = lstOrderItem;
+	}
+
 }

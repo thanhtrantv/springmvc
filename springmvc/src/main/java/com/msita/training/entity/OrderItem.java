@@ -1,75 +1,82 @@
-//package com.msita.training.entity;
-//
-//import java.util.List;
-//
-//import javax.persistence.CascadeType;
-//import javax.persistence.EmbeddedId;
-//import javax.persistence.Entity;
-//import javax.persistence.JoinColumn;
-//import javax.persistence.ManyToOne;
-//import javax.persistence.OneToMany;
-//import javax.persistence.Table;
-//
-//import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-//import com.fasterxml.jackson.annotation.JsonManagedReference;
-//
-//@Entity
-//@Table(name = "order_item", schema = "cafedb")
-//public class OrderItem {
-//	@EmbeddedId
-//	private OrderItemKey key;
-//
-//	@JsonManagedReference
-//	@ManyToOne(cascade=CascadeType.ALL)
-//	@JoinColumn(name="iditem",referencedColumnName="iditem",
-//				nullable = false, insertable = false, updatable = false)
-//	private Item item;
-//
-//	@JsonManagedReference
-//	@ManyToOne(cascade=CascadeType.ALL)
-//	@JoinColumn(name="idorder",referencedColumnName="idorder",
-//				nullable = false, insertable = false, updatable = false)
-//	private Order order;
-//
-//	@JsonManagedReference
-//	@ManyToOne(cascade=CascadeType.ALL)
-//	@JoinColumn(name="idstatus",referencedColumnName="idstatus",
-//				nullable = false, insertable = false, updatable = false)
+package com.msita.training.entity;
+
+import java.io.Serializable;
+import java.sql.Timestamp;
+
+import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@SuppressWarnings("serial")
+@Entity
+@javax.persistence.Table(name="order_item", schema="cafedb")
+public class OrderItem implements Serializable{
+
+	@EmbeddedId
+	private OrderItemKey key;
+	
+	@Column(name="time")
+	private Timestamp time;	
+	
+	
+	@Column(name="idstatus")
+	private String statusId;
+	
+	@JsonIgnoreProperties("lstOrderItem")
+	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="idItem", nullable=false, insertable=false, updatable=false)
+	private Item item;
+//	
+//	@ManyToOne(fetch=FetchType.EAGER)
+//	@JoinColumn(name="idStatus", nullable=false, insertable=false, updatable=false)
 //	private Status status;
-//
-//
-//
-//	public Status getStatus() {
-//		return status;
-//	}
-//
-//	public void setStatus(Status status) {
-//		this.status = status;
-//	}
-//
-//	public OrderItemKey getKey() {
-//		return key;
-//	}
-//
-//	public void setKey(OrderItemKey key) {
-//		this.key = key;
-//	}
-//
-//	public Item getItem() {
-//		return item;
-//	}
-//
-//	public void setItem(Item item) {
-//		this.item = item;
-//	}
-//
-//	public Order getOrder() {
-//		return order;
-//	}
-//
-//	public void setOrder(Order order) {
-//		this.order = order;
-//	}
-//
-//
-//}
+//	
+	
+	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="idOrder", nullable=false, insertable=false, updatable=false)
+	private Order order;
+
+
+			/*	 GETTER - SETTER	*/
+	
+	
+	public Timestamp getTime() {
+		return time;
+	}
+	public Item getItem() {
+		return item;
+	}
+	public void setItem(Item item) {
+		this.item = item;
+	}
+	public void setTime(Timestamp time) {
+		this.time = time;
+	}
+	
+	public String getStatusId() {
+		return statusId;
+	}
+	public void setStatusId(String statusId) {
+		this.statusId = statusId;
+	}
+	public OrderItemKey getKey() {
+		return key;
+	}
+	public void setKey(OrderItemKey key) {
+		this.key = key;
+	}
+	public Order getOrder() {
+		return order;
+	}
+	public void setOrder(Order order) {
+		this.order = order;
+	}
+	
+	
+}

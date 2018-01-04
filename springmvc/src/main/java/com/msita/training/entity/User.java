@@ -3,76 +3,92 @@ package com.msita.training.entity;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+@SuppressWarnings("serial")
 @Entity
-@Table(name = "user", schema = "cafedb")
+@Table(name="user", schema="cafedb")
 public class User implements Serializable{
 	@Id
-	@Column(name = "iduser")
-	private String username;
+	@Column(name="iduser")
+	private String idUser;
+	
+	@Column(name="idrole")
+	private String idRole;
+	
+	@Column(name="email")
+	private String email;
 	
 	@Column(name="password")
 	private String password;
 	
-	@Column(name="idrole")
-	private String idrole;
-	
 	@Column(name="name")
-	private String fullName;
+	private String name;
+
+	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="idRole", nullable=false, insertable=false, updatable=false)
+	private Role role;	
 	
-//	@JsonIgnoreProperties(value="user")
-//	//@JsonBackReference
-//	@OneToMany(mappedBy="user",fetch=FetchType.EAGER)
-//	private List<Order> lstOrder;
-//
-//	public List<Order> getLstOrder() {
-//		return lstOrder;
+//	@JsonIgnoreProperties("user")
+//	@OneToMany(cascade=CascadeType.ALL, mappedBy="user", fetch=FetchType.EAGER)
+//	private List<Order> lstorder;
+
+	
+	
+	
+	
+			/*	 GETTER - SETTER	*/
+	
+//	public List<Order> getLstorder() {
+//		return lstorder;
 //	}
-//
-//	public void setLstOrder(List<Order> lstOrder) {
-//		this.lstOrder = lstOrder;
+//	public void setLstorder(List<Order> lstorder) {
+//		this.lstorder = lstorder;
 //	}
-
-	public String getFullName() {
-		return fullName;
+	public String getIdUser() {
+		return idUser;
 	}
-
-	public void setFullName(String fullName) {
-		this.fullName = fullName;
+	public void setIdUser(String idUser) {
+		this.idUser = idUser;
 	}
-
-	public String getUsername() {
-		return username;
+	public String getIdRole() {
+		return idRole;
 	}
-
-	public void setUsername(String username) {
-		this.username = username;
+	public void setIdRole(String idRole) {
+		this.idRole = idRole;
 	}
-
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 	public String getPassword() {
 		return password;
 	}
-
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
-	public String getIdrole() {
-		return idrole;
+	public String getName() {
+		return name;
 	}
-
-	public void setIdrole(String idrole) {
-		this.idrole = idrole;
+	public void setName(String name) {
+		this.name = name;
 	}
-	
-	
+	public Role getRole() {
+		return role;
+	}
+	public void setRole(Role role) {
+		this.role = role;
+	}
 }
