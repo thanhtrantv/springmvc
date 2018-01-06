@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.msita.training.entity.Item;
 import com.msita.training.entity.Table;
 import com.msita.training.service.TableListService;
 //import com.msita.training.vo.Table;
@@ -28,15 +30,20 @@ public class TableListController {
 	@ResponseBody
 	@RequestMapping(value="/getTables",method = RequestMethod.GET)
 	public List<Table> getTables(){
-		List<Table> lst = tableListService.findAllListTable();
-		System.out.println("YYYYYYY:"+lst.size());
-		for(Table table: lst) {
-//			if(table.getOrder()!=null) {
-//				System.out.println("table::"+table.getOrder().getOrderId());
-//				System.out.println("item:"+table.getOrder().getLstOrderItem().get(0).getItemId());
-//			}
-			
-		}
-		return lst;
+		return tableListService.findAllListTable();
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/getItems",method = RequestMethod.GET)
+	public List<Item> getItems(){
+		return tableListService.findAllItem();
+	}
+	
+	@RequestMapping(value="/saveItem",method = RequestMethod.POST)
+	public String saveItem(@RequestParam("checkitem") String checkItem,
+			@RequestParam("tableId") int tableId){
+		System.out.println(checkItem+"::::"+tableId);
+		tableListService.addItemToOrder(checkItem,tableId);
+		return "redirect:/tableList";
 	}
 }

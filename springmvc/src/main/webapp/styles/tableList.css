@@ -125,6 +125,7 @@ body, html {
    display: inline-block;
    margin-bottom: 10px;
    margin:1%;
+   vertical-align: top;
 }
 .item-content{
 	
@@ -147,7 +148,7 @@ table,table td{
 table td{
 	border : 1px solid #ccc;
 }
-button{
+#load-table-content button,#id01 button{
 	border-radius: 3px;
     background: #27ae60;
     color: #fff !important;
@@ -190,4 +191,22 @@ button{
     text-align: left;
     background-color: #4CAF50;
     color: white;
+}
+.row-item{
+	padding: 0 10px;
+    display: inline-block;
+    width: 100%;
+	
+}
+.row-item .col{
+	width: 30%;
+    float: left;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+}
+.pull-right{
+	float:right;	
+}
+#row-item-template{
+	display: none;
 }

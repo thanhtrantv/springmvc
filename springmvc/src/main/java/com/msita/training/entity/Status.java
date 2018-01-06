@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @SuppressWarnings("serial")
@@ -29,9 +30,10 @@ public class Status implements Serializable{
 //	@OneToMany(cascade=CascadeType.ALL, mappedBy="statusOrder", fetch=FetchType.EAGER)
 //	private List<Order> lstorder;
 //	
-//	@JsonIgnoreProperties("status")
-//	@OneToMany(cascade=CascadeType.ALL, mappedBy="status", fetch=FetchType.EAGER)
-//	private List<OrderItem> lstOrderItem;
+	@JsonBackReference
+	@JsonIgnoreProperties("status")
+	@OneToMany(cascade=CascadeType.ALL, mappedBy="status", fetch=FetchType.EAGER)
+	private List<OrderItem> lstOrderItem;
 //
 //	
 	
@@ -39,6 +41,12 @@ public class Status implements Serializable{
 		
 	public String getIdStatus() {
 		return idStatus;
+	}
+	public List<OrderItem> getLstOrderItem() {
+		return lstOrderItem;
+	}
+	public void setLstOrderItem(List<OrderItem> lstOrderItem) {
+		this.lstOrderItem = lstOrderItem;
 	}
 	public void setIdStatus(String idStatus) {
 		this.idStatus = idStatus;

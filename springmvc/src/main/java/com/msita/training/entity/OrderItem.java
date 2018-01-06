@@ -22,20 +22,19 @@ public class OrderItem implements Serializable{
 	private OrderItemKey key;
 	
 	@Column(name="time")
-	private Timestamp time;	
+	private Timestamp time;
 	
-	
-	@Column(name="idstatus")
-	private String statusId;
+	@Column(name="idStatus")
+	private String idStatus;
 	
 	@JsonIgnoreProperties("lstOrderItem")
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="idItem", nullable=false, insertable=false, updatable=false)
 	private Item item;
 //	
-//	@ManyToOne(fetch=FetchType.EAGER)
-//	@JoinColumn(name="idStatus", nullable=false, insertable=false, updatable=false)
-//	private Status status;
+	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="idstatus",referencedColumnName="idstatus", nullable=false, insertable=false, updatable=false)
+	private Status status;
 //	
 	
 	@ManyToOne(fetch=FetchType.EAGER)
@@ -49,6 +48,18 @@ public class OrderItem implements Serializable{
 	public Timestamp getTime() {
 		return time;
 	}
+	public String getIdStatus() {
+		return idStatus;
+	}
+	public void setIdStatus(String idStatus) {
+		this.idStatus = idStatus;
+	}
+	public Status getStatus() {
+		return status;
+	}
+	public void setStatus(Status status) {
+		this.status = status;
+	}
 	public Item getItem() {
 		return item;
 	}
@@ -59,12 +70,6 @@ public class OrderItem implements Serializable{
 		this.time = time;
 	}
 	
-	public String getStatusId() {
-		return statusId;
-	}
-	public void setStatusId(String statusId) {
-		this.statusId = statusId;
-	}
 	public OrderItemKey getKey() {
 		return key;
 	}

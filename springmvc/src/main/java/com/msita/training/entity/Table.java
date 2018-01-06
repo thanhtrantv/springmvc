@@ -36,7 +36,15 @@ public class Table implements Serializable {
 		}
 		return null;
 	}
-
+	public String getStatus() {
+		String status= "";
+		if(getOrderNotPay()==null)
+			status=  "Empty";
+		else {
+			status=  "Drinking...";
+		}
+		return status;
+	}
 	/*	 GETTER - SETTER	*/
 	public int getIdTable() {
 		return idTable;
