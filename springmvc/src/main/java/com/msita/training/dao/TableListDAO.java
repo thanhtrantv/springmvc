@@ -44,27 +44,27 @@ public class TableListDAO extends BaseDAO{
 	public Table findTableById(int id){
 		return (Table) sessionFactory.getCurrentSession().createQuery("from Table where idtable="+id).uniqueResult();		
 	}
-	
 	@Transactional
-	public int countOrder(){
-		return  (int) sessionFactory.getCurrentSession().createQuery("select count(*) from Order").uniqueResult();		
+	public Order findOrderById(String id){
+		return (Order) sessionFactory.getCurrentSession().createQuery("from Order where idOrder="+id).uniqueResult();		
+	}
+	@Transactional
+	public void updateOrder(Order order){
+		sessionFactory.getCurrentSession().update(order);
+	}
+	@Transactional
+	public Long countOrder(){
+		return  (Long ) sessionFactory.getCurrentSession().createQuery("select count(*) from Order").uniqueResult();		
 	}
 	
 	@Transactional
-	public void addOrder(){
+	public void addOrder(int idTable){
 		Order order=new Order();
-		order.setIdOrder("00"+countOrder());
+		order.setIdOrder("00"+(countOrder()+1));
 		order.setIdStatus("CTT");
 		order.setSum(0);
-		//sessionFactory.getCurrentSession().
-		String hql = "INSERT INTO Order(idorder,idStatus,sum)";
-		Query query =  sessionFactory.getCurrentSession().createQuery(hql);
-		query.setParameter("idOrder", "00"+countOrder());
-		query.setParameter("idStatus", "CTT");
-		query.setParameter("sum", 0);
-		int result = query.executeUpdate();
-		System.out.println("Rows affected: " + result);
-		//return (Table) sessionFactory.getCurrentSession().createQuery("from Table where idtable="+id).uniqueResult();		
+		order.setIdTable(idTable);
+		sessionFactory.getCurrentSession().save(order);
 	}
 	
 	@Transactional
@@ -75,16 +75,35 @@ public class TableListDAO extends BaseDAO{
 		item.getKey().setIdItem(idItem);
 		item.getKey().setIdOrder(idOrder);
 		item.setIdStatus("CL");
+		item.setQuantity(1);
 		sessionFactory.getCurrentSession().save(item);
-		//sessionFactory.getCurrentSession().persist(arg0);
-		//sessionFactory.getCurrentSession().
-//		String hql = "INSERT INTO OrderItem(key.idOrder,key.idItem)";
-//		Query query =  sessionFactory.getCurrentSession().save(arg0)createQuery(hql);
-//		query.setParameter("key.idorder", idOrder);
-//		query.setParameter("key.iditem", idItem);
-//		int result = query.executeUpdate();
-//		System.out.println("Rows affected: " + result);
-		//return (Table) sessionFactory.getCurrentSession().createQuery("from Table where idtable="+id).uniqueResult();		
 	}
+	
+	@Transactional
+	public boolean checkExistingItem(String idItem,String idOrder) {
+		Query query = sessionFactory.getCurrentSession().createQuery("select count(*) from OrderItem where idItem=:idItem and idOrder=:idOrder");
+		query.setParameter("idOrder", idOrder);
+		query.setParameter("idItem", idItem);
+		Long count=(Long) query.uniqueResult();
+		if(count>0)
+			return true;
+		return false;
+	}
+	
+	@Transactional
+	public OrderItem getOrderItemByIdOrderAndIdItem(String idItem,String idOrder) {
+		Query query=sessionFactory.getCurrentSession().createQuery("from OrderItem where idOrder = :idOrderSet and idItem = :idItemSet");
+		query.setParameter("idOrderSet", idOrder);
+		query.setParameter("idItemSet", idItem);
+		return (OrderItem) query.list().get(0);
+	}
+	
+	@Transactional
+	public void updateQuantity(String idItem,String idOrder) {
+		OrderItem orderItem=getOrderItemByIdOrderAndIdItem(idItem,idOrder);
+		orderItem.setQuantity(orderItem.getQuantity()+1);		
+		sessionFactory.getCurrentSession().update(orderItem);
+	}
+	
 	
 }

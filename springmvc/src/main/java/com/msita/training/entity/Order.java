@@ -27,29 +27,23 @@ public class Order implements Serializable {
 	@Column(name="sum")
 	private double sum;
 	
+	@Column(name="idtable")
+	private int idTable;
 	
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="idtable",referencedColumnName="idtable", nullable=false, insertable=false, updatable=false)
 	private Table table;
 
-//	@JsonIgnoreProperties("role")
-//	@ManyToOne(fetch=FetchType.EAGER)
-//	@JoinColumn(name="idUser", nullable=false, insertable=false, updatable=false)
-//	private User user;
-//
-//	@ManyToOne(fetch=FetchType.EAGER)
-//	@JoinColumn(name="idStatus", nullable=false, insertable=false, updatable=false)
-//	private Status statusOrder;
-	
 	@JsonIgnoreProperties("order")
 	@OneToMany(cascade=CascadeType.ALL, mappedBy="order", fetch=FetchType.EAGER)
 	private List<OrderItem> lstOrderItem;
 	
-	
-	
-	
-			/*	 GETTER - SETTER	*/
-		
+	public int getIdTable() {
+		return idTable;
+	}
+	public void setIdTable(int idTable) {
+		this.idTable = idTable;
+	}
 	public String getIdOrder() {
 		return idOrder;
 	}

@@ -42,7 +42,7 @@ function loadData(data) {
 		};
 
 		if (orderData != null) {
-			items.getElementsByClassName('order-id')[0].innerHTML = orderData.idOrder;
+			items.getElementsByClassName('order-id')[0].innerHTML = 'Order ID: '+orderData.idOrder;
 
 			items.getElementsByClassName('sum')[0].innerHTML = "Sum: "
 					+ orderData.sum + "k";
@@ -51,19 +51,22 @@ function loadData(data) {
 				var item = orderData.lstOrderItem[j];
 				var itemElement = document.createElement("tr");
 
-				// var itemElement1 = document.createElement("td");
-				// itemElement1.innerHTML=orderData.idOrder;
+				var itemElement1 = document.createElement("td");
+				itemElement1.innerHTML = item.item.name;
 
 				var itemElement2 = document.createElement("td");
-				itemElement2.innerHTML = item.item.name;
-
-				var itemElement3 = document.createElement("td");
-				itemElement3.innerHTML = item.item.price;
-
+				itemElement2.innerHTML = item.item.price;
+				
+				 var itemElement3 = document.createElement("td");
+				 itemElement3.innerHTML=item.quantity;
+				 
 				var itemElement4 = document.createElement("td");
-				var itemElement5 = document.createElement("td");
+				itemElement4.innerHTML = item.status.name;
 
-				// itemElement.appendChild(itemElement1);
+				var itemElement5 = document.createElement("td");
+				
+
+				itemElement.appendChild(itemElement1);
 				itemElement.appendChild(itemElement2);
 				itemElement.appendChild(itemElement3);
 				itemElement.appendChild(itemElement4);

@@ -16,7 +16,7 @@
 			<div id="wrapper-header" style="width: 100%; opacity: 1;">
 				<div id="main-header" class="object">
 					<div class="logo">
-						<img src="img/logo-burst.png" alt="logo platz" height="38"
+						<img src="images/logo.png" alt="logo cafe msita" height="38"
 							width="90">
 					</div>
 					<div id="main_tip_search">
@@ -62,8 +62,9 @@
 					<table id="itemList" class="itemList">
 						<thead>
 							<tr>
-								<th style="width:40%;">Item Name</th>
+								<th style="width:30%;">Item Name</th>
 								<th style="width:10%;">Price</th>
+								<th style="width:10%;">Quantity</th>
 								<th style="width:20%;">Status</th>
 								<th  style="width:10%;">Delete</th>
 							</tr>
@@ -107,6 +108,34 @@
 		      </div>
 		    </div>
 		  </div>
-		
+		<div id="id02" class="w3-modal">
+		    <div class="w3-modal-content">
+		      <div class="w3-container">
+		        <span onclick="document.getElementById('id02').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+		       	<h5>Items to select..</h5>
+		       	
+		       	<label class="id-table"></label>
+		       	<form action="tableList/saveItem" method="post">
+		       		<input type="hidden" id="table-id-hidden" name="tableId">
+			       	<div id="grid-item">
+			       		<div id="row-item-template" class="row-item">
+					       <div class="col1 col">
+					       			Coca
+					       </div>
+					       <div class="col2 col">
+					       			10k
+					       	</div>
+					       	<div class="col3 col">
+					       		<input type="radio" class="checkitem" name="checkitem" />
+					       	</div>
+				       	</div>
+			       	</div>
+			       	<div class="pull-right">
+			       			<button type="submit">Save</button>
+			       	</div>
+		       	</form>
+		      </div>
+		    </div>
+		  </div>
 	</body>
 </html>

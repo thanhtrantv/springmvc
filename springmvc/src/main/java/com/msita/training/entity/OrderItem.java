@@ -31,20 +31,24 @@ public class OrderItem implements Serializable{
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="idItem", nullable=false, insertable=false, updatable=false)
 	private Item item;
-//	
+	
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="idstatus",referencedColumnName="idstatus", nullable=false, insertable=false, updatable=false)
 	private Status status;
-//	
 	
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="idOrder", nullable=false, insertable=false, updatable=false)
 	private Order order;
 
-
-			/*	 GETTER - SETTER	*/
+	@Column(name="quantity")
+	private int quantity;
 	
-	
+	public int getQuantity() {
+		return quantity;
+	}
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
 	public Timestamp getTime() {
 		return time;
 	}
