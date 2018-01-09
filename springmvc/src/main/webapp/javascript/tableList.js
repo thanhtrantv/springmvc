@@ -16,8 +16,9 @@ function getTable() {
 	xhttp.open("GET", "tableList/getTables", true);
 	xhttp.send();
 }
-
+var dataTable;
 function loadData(data) {
+	dataTable=data;
 	for (var i = 0; i < data.length; i++) {
 		console.log(data[i])
 		var orderData = data[i].orderNotPay;
@@ -34,11 +35,18 @@ function loadData(data) {
 
 		// add item to order
 		items.getElementsByClassName('add-item')[0].id = data[i].idTable;
+		items.getElementsByClassName('export-bill')[0].id = data[i].idTable;
 		items.getElementsByClassName('add-item')[0].onclick = function() {
 			document.getElementById('id01').style.display = 'block';
 			document.getElementById('id01').getElementsByClassName('id-table')[0].innerHTML = 'Table : '
 					+ this.id;
 			document.getElementById('table-id-hidden').value= this.id;
+		};
+		
+		items.getElementsByClassName('export-bill')[0].onclick = function() {
+			document.getElementById('id02').style.display = 'block';
+			document.getElementById('id02').getElementsByClassName('id-table')[0].innerHTML =''+ this.id;
+			generateBill(this.id)
 		};
 
 		if (orderData != null) {
@@ -77,6 +85,54 @@ function loadData(data) {
 		}
 		table.appendChild(items);
 	}
+}
+
+function generateBill(id){
+	
+	var orderData= null;
+	
+	for (var i = 0; i < dataTable.length; i++) {
+		
+		if(id==dataTable[i].idTable){
+			
+			orderData = dataTable[i].orderNotPay;
+			document.getElementsByClassName('order-id-hidden')[0].value=orderData.idOrder;
+			var gridItem = document.getElementById('grid-item-bill');
+			var gridItemRemove=document.getElementsByClassName("my-elements");
+			var lengthArr=gridItemRemove.length;
+			if(gridItemRemove!=null && gridItemRemove.length>0){
+				for(var o=0;o<gridItemRemove.length;o++){
+					gridItem.removeChild(gridItemRemove[0]);
+				}
+			}
+				
+				
+			//set id order
+			var billElement=document.getElementById('id02');
+			billElement.getElementsByClassName('order-text')[0].innerHTML=orderData.idOrder;	
+			billElement.getElementsByClassName('table-text')[0].innerHTML=dataTable[i].idTable;
+			billElement.getElementsByClassName('user-text')[0].innerHTML=orderData.user.name;
+			
+			for (var j = 0; j < orderData.lstOrderItem.length; j++) {
+				var itemData = orderData.lstOrderItem[j];
+				var itemTemplate = document.getElementById('row-item-template-bill')
+						.cloneNode(true);
+				itemTemplate.style.display = 'inline-block';
+
+				itemTemplate.id = itemData.key.idItem+'-item-bill';
+
+				itemTemplate.getElementsByClassName('col1')[0].innerHTML = itemData.item.name;
+				itemTemplate.getElementsByClassName('col2')[0].innerHTML = itemData.quantity;
+				itemTemplate.getElementsByClassName('col3')[0].innerHTML = itemData.item.price+'k';
+				itemTemplate.classList.add("my-elements");
+				gridItem.appendChild(itemTemplate);
+			}
+			billElement.getElementsByClassName('sum')[0].innerHTML = "Sum: "
+				+ orderData.sum + "k";
+		}
+		
+	}
+	
 }
 function getItem() {
 	var xhttp = new XMLHttpRequest();

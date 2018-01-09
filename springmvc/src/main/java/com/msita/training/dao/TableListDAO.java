@@ -46,7 +46,10 @@ public class TableListDAO extends BaseDAO{
 	}
 	@Transactional
 	public Order findOrderById(String id){
-		return (Order) sessionFactory.getCurrentSession().createQuery("from Order where idOrder="+id).uniqueResult();		
+		
+		Query query= sessionFactory.getCurrentSession().createQuery("from Order where idOrder=:idOrder");
+		query.setParameter("idOrder", id);
+		return (Order) query.uniqueResult();		
 	}
 	@Transactional
 	public void updateOrder(Order order){
@@ -63,6 +66,7 @@ public class TableListDAO extends BaseDAO{
 		order.setIdOrder("00"+(countOrder()+1));
 		order.setIdStatus("CTT");
 		order.setSum(0);
+		order.setIdUser("user1");
 		order.setIdTable(idTable);
 		sessionFactory.getCurrentSession().save(order);
 	}
@@ -104,6 +108,4 @@ public class TableListDAO extends BaseDAO{
 		orderItem.setQuantity(orderItem.getQuantity()+1);		
 		sessionFactory.getCurrentSession().update(orderItem);
 	}
-	
-	
 }

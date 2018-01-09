@@ -148,7 +148,7 @@ table,table td{
 table td{
 	border : 1px solid #ccc;
 }
-#load-table-content button,#id01 button{
+#load-table-content button,#id01 button,#id02 button{
 	border-radius: 3px;
     background: #27ae60;
     color: #fff !important;
@@ -196,7 +196,7 @@ table td{
 	padding: 0 10px;
     display: inline-block;
     width: 100%;
-	
+	padding-left: 0;
 }
 .row-item .col{
 	width: 30%;
@@ -209,4 +209,8 @@ table td{
 }
 #row-item-template{
 	display: none;
+}
+.form-item{
+	border: 1px solid #ccc;
+    padding: 10px;
 }

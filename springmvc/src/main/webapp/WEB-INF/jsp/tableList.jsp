@@ -74,7 +74,7 @@
 					<div class="sum"></div>
 				</div>
 				<div class="button-table">
-					<button>Export Bill</button>
+					<button class="export-bill">Export Bill</button>
 					<button class="add-item">Add Item</button>
 				</div>
 			</div>
@@ -108,30 +108,44 @@
 		      </div>
 		    </div>
 		  </div>
-		<div id="id02" class="w3-modal">
+		<div id="id02" class="w3-modal show">
 		    <div class="w3-modal-content">
-		      <div class="w3-container">
+		      <div class="w3-container" style="padding-bottom: 20px;">
 		        <span onclick="document.getElementById('id02').style.display='none'" class="w3-button w3-display-topright">&times;</span>
-		       	<h5>Items to select..</h5>
+		       	<h5 style=" text-align: center;background-color: #4de06699;color: #0c0c0c;">Bill for table :<strong class="id-table"></strong></h5>
 		       	
-		       	<label class="id-table"></label>
-		       	<form action="tableList/saveItem" method="post">
-		       		<input type="hidden" id="table-id-hidden" name="tableId">
-			       	<div id="grid-item">
-			       		<div id="row-item-template" class="row-item">
+		       	<form action="tableList/paid" method="post">
+		       		<input type="hidden" class ="order-id-hidden" name="idOrder">
+		       		<div class="form-item">
+		       			Order Id : <strong class="order-text">001</strong>
+		       		</div>
+		       		<div class="form-item">
+		       			Table Id : <strong class="table-text">1</strong>
+		       		</div>
+		       		<div class="form-item">
+		       			User : <strong class="user-text">user1</strong>
+		       		</div>
+		       		<div class="form-item">
+		       			Status : <strong class="status-text">Drink</strong>
+		       		</div>
+		       		<h5>Items</h5>
+			       	<div id="grid-item-bill">
+			       		
+			       	</div>
+			       	<div id="row-item-template-bill" class="row-item " style="display:none;">
 					       <div class="col1 col">
 					       			Coca
 					       </div>
 					       <div class="col2 col">
+					       			1
+					       	</div>
+					       	 <div class="col3 col">
 					       			10k
 					       	</div>
-					       	<div class="col3 col">
-					       		<input type="radio" class="checkitem" name="checkitem" />
-					       	</div>
 				       	</div>
-			       	</div>
+			       	<div class="sum"></div>
 			       	<div class="pull-right">
-			       			<button type="submit">Save</button>
+			       			<button type="submit">Paid</button>
 			       	</div>
 		       	</form>
 		      </div>

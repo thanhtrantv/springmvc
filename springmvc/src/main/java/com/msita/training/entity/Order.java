@@ -30,6 +30,9 @@ public class Order implements Serializable {
 	@Column(name="idtable")
 	private int idTable;
 	
+	@Column(name="idUser")
+	private String idUser;
+	
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="idtable",referencedColumnName="idtable", nullable=false, insertable=false, updatable=false)
 	private Table table;
@@ -38,6 +41,23 @@ public class Order implements Serializable {
 	@OneToMany(cascade=CascadeType.ALL, mappedBy="order", fetch=FetchType.EAGER)
 	private List<OrderItem> lstOrderItem;
 	
+	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="iduser",referencedColumnName="iduser", nullable=false, insertable=false, updatable=false)
+	private User user;
+	
+	
+	public String getIdUser() {
+		return idUser;
+	}
+	public void setIdUser(String idUser) {
+		this.idUser = idUser;
+	}
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
 	public int getIdTable() {
 		return idTable;
 	}

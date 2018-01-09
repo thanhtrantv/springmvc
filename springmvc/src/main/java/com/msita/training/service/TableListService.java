@@ -52,4 +52,9 @@ public class TableListService {
 		order.setSum(sum);
 		tableListDAO.updateOrder(order);
 	}
+	public void updatePaidOrder(String idOrder) {
+		Order order = tableListDAO.findOrderById(idOrder);
+		order.setIdStatus("DTT");
+		tableListDAO.updateOrder(order);
+	}
 }

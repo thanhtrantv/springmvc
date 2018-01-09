@@ -46,4 +46,10 @@ public class TableListController {
 		tableListService.addItemToOrder(checkItem,tableId);
 		return "redirect:/tableList";
 	}
+	@RequestMapping(value="/paid",method = RequestMethod.POST)
+	public String updatePaidOrder(@RequestParam("idOrder") String idOrder) {;
+		System.out.println(idOrder+"::::");
+		tableListService.updatePaidOrder(idOrder);
+		return "redirect:/tableList";
+	}
 }

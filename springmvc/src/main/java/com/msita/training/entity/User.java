@@ -13,6 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @SuppressWarnings("serial")
@@ -39,22 +40,18 @@ public class User implements Serializable{
 	@JoinColumn(name="idRole", nullable=false, insertable=false, updatable=false)
 	private Role role;	
 	
-//	@JsonIgnoreProperties("user")
-//	@OneToMany(cascade=CascadeType.ALL, mappedBy="user", fetch=FetchType.EAGER)
-//	private List<Order> lstorder;
+	@JsonBackReference
+	@JsonIgnoreProperties("user")
+	@OneToMany(cascade=CascadeType.ALL, mappedBy="user", fetch=FetchType.EAGER)
+	private List<Order> lstorder;
 
 	
-	
-	
-	
-			/*	 GETTER - SETTER	*/
-	
-//	public List<Order> getLstorder() {
-//		return lstorder;
-//	}
-//	public void setLstorder(List<Order> lstorder) {
-//		this.lstorder = lstorder;
-//	}
+	public List<Order> getLstorder() {
+		return lstorder;
+	}
+	public void setLstorder(List<Order> lstorder) {
+		this.lstorder = lstorder;
+	}
 	public String getIdUser() {
 		return idUser;
 	}
