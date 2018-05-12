@@ -33,13 +33,7 @@ public class LoginController {
 		String page= "home-page";
 		User rs=loginService.login(username, password);
 		if(rs!=null) {
-			if(rs.getIdRole().equals("BB")) {
-				page="tableList";
-			} else if(rs.getIdRole().equals("QL")) {
-				page="manager";
-			} else {//PC
-				page="bartender";
-			}
+			page="home";
 		}else {
 			page="error";
 		}

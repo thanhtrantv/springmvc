@@ -22,36 +22,35 @@ import com.msita.training.entity.User;
 //import com.msita.training.vo.User;
 
 @Repository
-public class LoginDAO {
-	@Autowired
-    private SessionFactory sessionFactory;
+public class LoginDAO extends BaseDAO{
+//	@Autowired
+//    private SessionFactory sessionFactory;
 	
 	@Transactional
 	public User login(String username) {
-//		User user = getJdbcTemplateObject().query(
-//				"SELECT iduser,password,name,idrole from user where iduser=?",
-//				new PreparedStatementSetter() {
-//
-//					@Override
-//					public void setValues(PreparedStatement arg0) throws SQLException {
-//						arg0.setString(1, username);
-//					}
-//				}, new ResultSetExtractor<User>() {
-//					@Override
-//					public User extractData(ResultSet ret) throws SQLException, DataAccessException {
-//						User user = null;
-//						if(ret.next()) {
-//							user = new User();
-//							user.setUsername(ret.getString("iduser"));
-//							user.setPassword(ret.getString("password"));
-//							user.setFullName(ret.getString("name"));
-//							user.setRole(ret.getString("idrole"));
-//						}
-//						return user;
-//					}
-//				});
-//	
+		User user = getJdbcTemplateObject().query(
+				"SELECT username,password,fullname from user where username=?",
+				new PreparedStatementSetter() {
+
+					@Override
+					public void setValues(PreparedStatement arg0) throws SQLException {
+						arg0.setString(1, username);
+					}
+				}, new ResultSetExtractor<User>() {
+					@Override
+					public User extractData(ResultSet ret) throws SQLException, DataAccessException {
+						User user = null;
+						if(ret.next()) {
+							user = new User();
+							user.setUsername(ret.getString("username"));
+							user.setPassword(ret.getString("password"));
+							user.setFullName(ret.getString("fullname"));
+							}
+						return user;
+					}
+				});
+		return user;
 		
-		return (User) sessionFactory.getCurrentSession().get(com.msita.training.entity.User.class, username);
+//		return (User) sessionFactory.getCurrentSession().get(com.msita.training.entity.User.class, username);
 	}
 }

@@ -1,8 +1,15 @@
 com\msita\training\dao\BaseDAO.class
 com\msita\training\dao\LoginDAO$2.class
+com\msita\training\entity\User.class
 com\msita\training\controller\HelloController.class
 com\msita\training\vo\User.class
-com\msita\training\dao\LoginDAO$1.class
 com\msita\training\dao\LoginDAO.class
+com\msita\training\vo\Item.class
+com\msita\training\vo\Order.class
+com\msita\training\vo\Table.class
+com\msita\training\vo\ResponseView.class
+com\msita\training\vo\OrderItem.class
+com\msita\training\dao\LoginDAO$1.class
+com\msita\training\vo\Status.class
 com\msita\training\controller\LoginController.class
 com\msita\training\service\LoginService.class
