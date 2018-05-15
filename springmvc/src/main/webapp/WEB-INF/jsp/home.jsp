@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="style.css"/>
-	 <link rel="stylesheet" href="bootstrap.min.css"/>
+    <link rel="stylesheet" href="styles/home.css"/>
+	 <link rel="stylesheet" href="styles/bootstrap.min.css"/>
 </head>
 <body>
 	<header>
@@ -28,7 +28,7 @@
       <div class="navbar navbar-dark bg-dark box-shadow">
         <div class="container d-flex justify-content-between">
           <a href="#" class="navbar-brand d-flex align-items-center">
-            <img src="money-bag.svg" style="width: 40px;  height: 40px;"/>
+            <img src="images/money-bag.svg" style="width: 40px;  height: 40px;"/>
             <strong>Shop</strong>
           </a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,17 +44,17 @@
 					<div class="slideshow-container">
 						<div class="mySlides ">
 							<div class="numbertext">1 / 3</div>
-							<img src="s1.jpg" style="width:100%">
+							<img src="images/s1.jpg" style="width:100%">
 							<div class="text">Caption Text</div>
 						</div>
 						<div class="mySlides ">
 							<div class="numbertext">2 / 3</div>
-							<img src="s2.jpg" style="width:100%">
+							<img src="images/s2.jpg" style="width:100%">
 							<div class="text">Caption Two</div>
 						</div>
 						<div class="mySlides  ">
 							<div class="numbertext">3 / 3</div>
-							<img src="s3.jpg" style="width:100%">
+							<img src="images/s3.jpg" style="width:100%">
 							<div class="text">Caption Three</div>
 						</div>
 					</div>
@@ -69,143 +69,22 @@
 			<section id="listProduct" class="bg-light">
 				<div class="container">
 				  <div class="row">
-					<div class="col-md-4">
-					  <div class="card mb-4 box-shadow">
-						<img class="card-img-top" src="icon1.png" alt="Card image cap">
-						<div class="card-body">
-						  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-						  <div class="d-flex justify-content-between align-items-center">
-							<div class="btn-group">
-							  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-							  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-							</div>
-							<small class="text-muted">9 mins</small>
+					  <c:forEach items="${listProduct}" var="item">
+						  <div class="col-md-4">
+							  <div class="card mb-4 box-shadow">
+								  <img class="card-img-top" src="${item.image}" alt="Card image cap">
+								  <div class="card-body">
+									  <p class="card-text">${item.description}</p>
+									  <div class="d-flex justify-content-between align-items-center">
+										  <div class="btn-group">
+											  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+											  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+										  </div>
+									  </div>
+								  </div>
+							  </div>
 						  </div>
-						</div>
-					  </div>
-					</div>
-					<div class="col-md-4">
-					  <div class="card mb-4 box-shadow">
-						<img class="card-img-top" src="thumbnail.svg" alt="Card image cap">
-						<div class="card-body">
-						  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-						  <div class="d-flex justify-content-between align-items-center">
-							<div class="btn-group">
-							  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-							  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-							</div>
-							<small class="text-muted">9 mins</small>
-						  </div>
-						</div>
-					  </div>
-					</div>
-					<div class="col-md-4">
-					  <div class="card mb-4 box-shadow">
-						<img class="card-img-top" src="thumbnail.svg" alt="Card image cap">
-						<div class="card-body">
-						  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-						  <div class="d-flex justify-content-between align-items-center">
-							<div class="btn-group">
-							  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-							  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-							</div>
-							<small class="text-muted">9 mins</small>
-						  </div>
-						</div>
-					  </div>
-					</div>
-
-					<div class="col-md-4">
-					  <div class="card mb-4 box-shadow">
-						<img class="card-img-top" src="thumbnail.svg" alt="Card image cap">
-						<div class="card-body">
-						  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-						  <div class="d-flex justify-content-between align-items-center">
-							<div class="btn-group">
-							  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-							  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-							</div>
-							<small class="text-muted">9 mins</small>
-						  </div>
-						</div>
-					  </div>
-					</div>
-					<div class="col-md-4">
-					  <div class="card mb-4 box-shadow">
-						<img class="card-img-top" src="thumbnail.svg" alt="Card image cap">
-						<div class="card-body">
-						  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-						  <div class="d-flex justify-content-between align-items-center">
-							<div class="btn-group">
-							  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-							  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-							</div>
-							<small class="text-muted">9 mins</small>
-						  </div>
-						</div>
-					  </div>
-					</div>
-					<div class="col-md-4">
-					  <div class="card mb-4 box-shadow">
-						<img class="card-img-top" src="thumbnail.svg" alt="Card image cap">
-						<div class="card-body">
-						  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-						  <div class="d-flex justify-content-between align-items-center">
-							<div class="btn-group">
-							  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-							  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-							</div>
-							<small class="text-muted">9 mins</small>
-						  </div>
-						</div>
-					  </div>
-					</div>
-
-					<div class="col-md-4">
-					  <div class="card mb-4 box-shadow">
-						<img class="card-img-top" src="thumbnail.svg" alt="Card image cap">
-						<div class="card-body">
-						  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-						  <div class="d-flex justify-content-between align-items-center">
-							<div class="btn-group">
-							  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-							  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-							</div>
-							<small class="text-muted">9 mins</small>
-						  </div>
-						</div>
-					  </div>
-					</div>
-					<div class="col-md-4">
-					  <div class="card mb-4 box-shadow">
-						<img class="card-img-top" src="thumbnail.svg" alt="Card image cap">
-						<div class="card-body">
-						  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-						  <div class="d-flex justify-content-between align-items-center">
-							<div class="btn-group">
-							  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-							  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-							</div>
-							<small class="text-muted">9 mins</small>
-						  </div>
-						</div>
-					  </div>
-					</div>
-					<div class="col-md-4">
-					  <div class="card mb-4 box-shadow">
-						<img class="card-img-top" src="thumbnail.svg" alt="Card image cap">
-						<div class="card-body">
-						  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-						  <div class="d-flex justify-content-between align-items-center">
-							<div class="btn-group">
-							  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-							  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-							</div>
-							<small class="text-muted">9 mins</small>
-						  </div>
-						</div>
-					  </div>
-					</div>
+					  </c:forEach>
 				  </div>
 				</div>
 			</section>
@@ -218,8 +97,8 @@
 		</div>
 	</section>
 	<!-- Placed at the end of the document so the pages load faster -->
-	 <script src="javascript/jquery-3.3.1.slim.min.js" ></script>
+	<script src="javascript/jquery-3.3.1.min.js">  </script>
 	<script src="javascript/bootstrap.min.js">  </script>
-	<script src="javascript/app.js">  </script>
+	<script src="javascript/home.js">  </script>
 </body>
 </html>
