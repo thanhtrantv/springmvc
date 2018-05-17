@@ -19,11 +19,12 @@ public class ProductDAO extends BaseDAO{
     @Transactional
     public List<Product> getProducts() {
         List<Product> lst = getJdbcTemplateObject().query(
-                "SELECT * from product", new RowMapper<Product>() {
+                "SELECT * from product",
+                new RowMapper<Product>() {
                     @Override
                     public Product mapRow(ResultSet resultSet, int i) throws SQLException {
                         Product product = new Product();
-                        product.setProductId(resultSet.getString("idproduct"));
+                        product.setProductId(resultSet.getString("idp"));
                         product.setDescription(resultSet.getString("description"));
                         product.setTitle(resultSet.getString("title"));
                         product.setImage(resultSet.getString("image"));

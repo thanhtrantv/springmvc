@@ -23,10 +23,7 @@ import com.msita.training.entity.User;
 
 @Repository
 public class LoginDAO extends BaseDAO{
-//	@Autowired
-//    private SessionFactory sessionFactory;
-	
-	@Transactional
+
 	public User login(String username) {
 		User user = getJdbcTemplateObject().query(
 				"SELECT username,password,fullname from user where username=?",
