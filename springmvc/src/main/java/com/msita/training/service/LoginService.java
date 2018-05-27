@@ -15,6 +15,7 @@ public class LoginService {
 	public User login(String username,String pass) {
 		User rs=null;
 		User user=loginDAO.login(username);
+		System.out.println("order size:"+user.getListOrder().size());
 		if(user!=null && user.getPassword().equals(pass)) {
 			rs=user;
 		}

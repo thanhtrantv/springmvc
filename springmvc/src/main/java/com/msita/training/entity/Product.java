@@ -1,16 +1,42 @@
 package com.msita.training.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="product", schema="training")
 public class Product {
-    private String productId;
+    @Id
+    @Column(name="idp")
+    private Integer productId;
+
+    @Column(name="title")
     private String title;
+
+    @Column(name="description")
     private String description;
+
+    @Column(name="image")
     private String image;
 
-    public String getProductId() {
+    @Column(name="price")
+    private String price;
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public Integer getProductId() {
         return productId;
     }
 
-    public void setProductId(String productId) {
+    public void setProductId(Integer productId) {
         this.productId = productId;
     }
 

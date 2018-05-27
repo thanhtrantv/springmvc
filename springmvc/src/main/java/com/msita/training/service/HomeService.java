@@ -15,4 +15,8 @@ public class HomeService {
     public List<Product> getProducts(){
         return productDAO.getProducts();
     }
+
+    public Product getProduct(int id){
+        return productDAO.getProduct(id);
+    }
 }
