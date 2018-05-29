@@ -21,6 +21,9 @@ public class Product {
     @Column(name="price")
     private String price;
 
+    @Column(name="brand")
+    private String brand;
+
     @Transient
     private int quantity=1;
 
@@ -70,5 +73,13 @@ public class Product {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
     }
 }

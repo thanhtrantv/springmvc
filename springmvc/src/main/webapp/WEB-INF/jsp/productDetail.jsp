@@ -60,7 +60,7 @@
                 <div class="col-md-7" style="border:0px solid gray">
                     <!-- info -->
                     <h3>${product.title}</h3>
-                    <h5 style="color:#337ab7">Brand: <a href="#">Samsung</a> · <small style="color:#337ab7">(5054 votes)</small></h5>
+                    <h5 style="color:#337ab7">Brand: <a href="#">${product.brand}</a></h5>
         
                     <!-- price -->
                     <h6 class="title-price"><small>Price</small></h6>

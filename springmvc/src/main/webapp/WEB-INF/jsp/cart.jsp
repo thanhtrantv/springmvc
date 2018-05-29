@@ -57,7 +57,7 @@
 								<th>Quantity</th>
 								<th class="text-center">Price</th>
 								<th class="text-center">Total</th>
-								<th> Action</th>
+								<th>Action</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -71,7 +71,7 @@
 												<img class="media-object" src="${item.image}" style="width: 72px; height: 72px;"> </a>
 											<div class="media-body">
 												<h4 class="media-heading"><a href="#">${item.title}</a></h4>
-												<h5 class="media-heading"> by SamSung</h5>
+												<h5 class="media-heading"> by ${item.brand}</h5>
 												<span>Status: </span><span class="text-success"><strong>In Stock</strong></span>
 											</div>
 										</div>
