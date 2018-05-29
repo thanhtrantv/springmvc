@@ -82,9 +82,12 @@
 									<td class="col-sm-1 col-md-1 text-center"><strong>${item.price}</strong></td>
 									<td class="col-sm-1 col-md-1 text-center"><strong>${item.price*item.quantity}</strong></td>
 									<td class="col-sm-1 col-md-1">
-										<button type="button" class="btn btn-danger">
-											<span class="glyphicon glyphicon-remove"></span> Remove
-										</button></td>
+                                        <form action="cart/removeProduct?id=${item.productId}" method="post">
+                                            <button type="submit" class="btn btn-danger">
+                                                <span class="glyphicon glyphicon-remove"></span> Remove
+                                            </button>
+                                        </form>
+									</td>
 								</tr>
 							</c:forEach>
 							<tr>

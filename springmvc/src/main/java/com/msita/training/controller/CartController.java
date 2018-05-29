@@ -28,7 +28,26 @@ public class CartController {
     public String cart(ModelMap model) {
         return "cart";
     }
-
+    @RequestMapping(value="/removeProduct",method=RequestMethod.POST)
+    public String removeProduct(@RequestParam("id") int id,
+                             HttpServletRequest request) {
+        String page= "cart";
+        List<Product> lst = (List<Product>) request.getSession().getAttribute("cart");
+        if(lst == null){
+            lst =new ArrayList<>();
+        }else{
+            int prodPos = 0;
+            for(Product prod : lst){
+                if(prod.getProductId()==id){
+                    break;
+                }
+                prodPos+=1;
+            }
+            lst.remove(prodPos);
+        }
+        request.getSession().setAttribute("cart",lst);
+        return "redirect:/"+page;
+    }
     @RequestMapping(value="/addProduct",method=RequestMethod.POST)
     public String addProduct(@RequestParam("id") int id,
                         HttpServletRequest request) {
