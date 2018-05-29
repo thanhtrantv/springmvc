@@ -1,3 +1,5 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page session="true" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -59,67 +61,38 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td class="col-sm-8 col-md-6">
-									<div class="media">
-											<a class="thumbnail pull-left" href="#"style="padding-right: 15px;"> <img class="media-object" src="images/product-icon.png" style="width: 72px; height: 72px;"> </a>
+						<c:set var="total" value="${0}"/>
+							<c:forEach items="${cart}" var="item">
+								<c:set var="total" value="${total + (item.price*item.quantity)}" />
+								<tr>
+									<td class="col-sm-8 col-md-6">
+										<div class="media">
+											<a class="thumbnail pull-left" href="#"style="padding-right: 15px;">
+												<img class="media-object" src="${item.image}" style="width: 72px; height: 72px;"> </a>
 											<div class="media-body">
-												<h4 class="media-heading"><a href="#">Samsung Galaxy S4 I337 16GB</a></h4>
-												<h5 class="media-heading"> by <a href="#">SamSung</a></h5>
+												<h4 class="media-heading"><a href="#">${item.title}</a></h4>
+												<h5 class="media-heading"> by SamSung</h5>
 												<span>Status: </span><span class="text-success"><strong>In Stock</strong></span>
 											</div>
-									</div>
-								</td>
-								<td class="col-sm-1 col-md-1" style="text-align: center">
-								<input type="email" class="form-control" id="exampleInputEmail1" value="3">
-								</td>
-								<td class="col-sm-1 col-md-1 text-center"><strong>$399</strong></td>
-								<td class="col-sm-1 col-md-1 text-center"><strong>$430</strong></td>
-								<td class="col-sm-1 col-md-1">
-								<button type="button" class="btn btn-danger">
-									<span class="glyphicon glyphicon-remove"></span> Remove
-								</button></td>
-							</tr>
-							<tr>
-								<td class="col-md-6">
-								<div class="media">
-									<a class="thumbnail pull-left" href="#" style="padding-right: 15px;"> <img class="media-object" src="images/product-icon.png" style="width: 72px; height: 72px;"> </a>
-									<div class="media-body">
-										<h4 class="media-heading"><a href="#">Iphone 7 Plus</a></h4>
-										<h5 class="media-heading"> by <a href="#">Apple</a></h5>
-										<span>Status: </span><span class="text-warning"><strong>Leaves warehouse in 2 - 3 weeks</strong></span>
-									</div>
-								</div></td>
-								<td class="col-md-1" style="text-align: center">
-								<input type="email" class="form-control" id="exampleInputEmail1" value="2">
-								</td>
-								<td class="col-md-1 text-center"><strong>$1000</strong></td>
-								<td class="col-md-1 text-center"><strong>$1100</strong></td>
-								<td class="col-md-1">
-								<button type="button" class="btn btn-danger">
-									<span class="glyphicon glyphicon-remove"></span> Remove
-								</button></td>
-							</tr>
-							<tr>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td><h5>Subtotal</h5></td>
-								<td class="text-right"><h5><strong>$1530</strong></h5></td>
-							</tr>
-							<tr>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td><h5>Estimated shipping</h5></td>
-								<td class="text-right"><h5><strong>$20</strong></h5></td>
-							</tr>
+										</div>
+									</td>
+									<td class="col-sm-1 col-md-1" style="text-align: center">
+										<input type="email" class="form-control" disabled id="quantity-${item.productId}" value="${item.quantity}">
+									</td>
+									<td class="col-sm-1 col-md-1 text-center"><strong>${item.price}</strong></td>
+									<td class="col-sm-1 col-md-1 text-center"><strong>${item.price*item.quantity}</strong></td>
+									<td class="col-sm-1 col-md-1">
+										<button type="button" class="btn btn-danger">
+											<span class="glyphicon glyphicon-remove"></span> Remove
+										</button></td>
+								</tr>
+							</c:forEach>
 							<tr>
 								<td></td>
 								<td></td>
 								<td></td>
 								<td><h3>Total</h3></td>
-								<td class="text-right"><h3><strong>$1550</strong></h3></td>
+								<td class="text-right"><h3><strong>$${total}</strong></h3></td>
 							</tr>
 							<tr>
 								<td></td>

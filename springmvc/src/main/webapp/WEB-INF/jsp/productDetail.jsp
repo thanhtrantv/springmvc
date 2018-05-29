@@ -92,11 +92,13 @@
         
                     <!-- add to cart -->
                     <div class="section" style="padding-bottom:20px;">
-                        <button class="btn btn-success">
-							<span style="margin-right:20px" class="glyphicon glyphicon-shopping-cart" aria-hidden="true">
-							</span> 
-							Add to cart
-						</button>
+                        <form action="cart/addProduct?id=${product.productId}" method="post">
+                            <button class="btn btn-success" type="submit">
+                                <span style="margin-right:20px" class="glyphicon glyphicon-shopping-cart" aria-hidden="true">
+                                </span>
+                                    Add to cart
+                            </button>
+                        </form>
                     </div>                                        
                 </div>                              
         

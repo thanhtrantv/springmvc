@@ -1,9 +1,6 @@
 package com.msita.training.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name="product", schema="training")
@@ -23,6 +20,17 @@ public class Product {
 
     @Column(name="price")
     private String price;
+
+    @Transient
+    private int quantity=1;
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
 
     public String getPrice() {
         return price;
