@@ -1,8 +1,8 @@
 package com.msita.training.controller;
 
-import com.msita.training.entity.Product;
-import com.msita.training.entity.User;
+import com.msita.training.entity.*;
 import com.msita.training.service.HomeService;
+import com.msita.training.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +24,9 @@ public class CartController {
 
     @Autowired
     private HomeService homeService;
+
+    @Autowired
+    private OrderService orderService;
 
     @RequestMapping(method = RequestMethod.GET)
     public String cart(ModelMap model) {
@@ -69,6 +73,38 @@ public class CartController {
         if(!isExist)
             lst.add(product);
         request.getSession().setAttribute("cart",lst);
+        return "redirect:/"+page;
+    }
+
+    @RequestMapping(value="/checkout",method=RequestMethod.GET)
+    public String checkout(HttpServletRequest request) {
+        String page= "completed";
+        List<Product> lst = (List<Product>) request.getSession().getAttribute("cart");
+        if(lst == null){
+            page = "home";
+        }else{
+            Order order =  new Order();
+            int sum = 0;
+            for(Product prod : lst){
+                sum+=(prod.getQuantity()*prod.getPrice());
+                OrderProduct orderProduct=new OrderProduct();
+
+                OrderProductKey key =new OrderProductKey();
+                key.setIdo(order.getIdo());
+                key.setIdp(prod.getProductId());
+
+                orderProduct.setKey(key);
+
+                orderProduct.setDate(LocalDateTime.now());
+                orderProduct.setPrice(prod.getPrice());
+                orderProduct.setQuantity(prod.getQuantity());
+                if(order.getLstOrderProduct()==null)
+                    order.setLstOrderProduct(new ArrayList<>());
+                order.getLstOrderProduct().add(orderProduct);
+            }
+            order.setSum(sum);
+            orderService.saveOrder(order);
+        }
         return "redirect:/"+page;
     }
 }

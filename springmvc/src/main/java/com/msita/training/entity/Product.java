@@ -1,6 +1,9 @@
 package com.msita.training.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name="product", schema="training")
@@ -19,7 +22,7 @@ public class Product {
     private String image;
 
     @Column(name="price")
-    private String price;
+    private Integer price;
 
     @Column(name="brand")
     private String brand;
@@ -27,6 +30,17 @@ public class Product {
     @Transient
     private int quantity=1;
 
+    @JsonIgnoreProperties("product")
+    @OneToMany(cascade=CascadeType.ALL, mappedBy="product", fetch=FetchType.LAZY)
+    private List<OrderProduct> lstOrderProduct;
+
+    public List<OrderProduct> getLstOrderProduct() {
+        return lstOrderProduct;
+    }
+
+    public void setLstOrderProduct(List<OrderProduct> lstOrderProduct) {
+        this.lstOrderProduct = lstOrderProduct;
+    }
     public int getQuantity() {
         return quantity;
     }
@@ -35,11 +49,11 @@ public class Product {
         this.quantity = quantity;
     }
 
-    public String getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(Integer price) {
         this.price = price;
     }
 

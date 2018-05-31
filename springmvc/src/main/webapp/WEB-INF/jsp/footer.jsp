@@ -1,3 +1,7 @@
 <footer>
-    <h4>Jsp 06 Teams</h4>
+    <section id="footer">
+        <div class="container">
+            <p>Copyright Msita.</p>
+        </div>
+    </section>
 </footer>

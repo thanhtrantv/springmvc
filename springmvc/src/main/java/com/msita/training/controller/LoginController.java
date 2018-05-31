@@ -1,16 +1,13 @@
 package com.msita.training.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.msita.training.entity.User;
 import com.msita.training.service.LoginService;
-import com.msita.training.vo.ResponseView;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -35,7 +32,7 @@ public class LoginController {
 		User rs=loginService.login(username, password);
 		if(rs!=null) {
 			page="home";
-			request.getSession().setAttribute("username",rs.getFullname());
+			request.getSession().setAttribute("user",rs);
 		}else {
 			page="error";
 		}

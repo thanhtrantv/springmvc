@@ -24,7 +24,7 @@ public class User implements Serializable {
     private String fullName;
 
     @JsonIgnoreProperties("user")
-    @OneToMany(cascade=CascadeType.ALL, mappedBy="user", fetch=FetchType.EAGER)
+    @OneToMany(cascade=CascadeType.ALL, mappedBy="user", fetch=FetchType.LAZY)
     private List<Order> listOrder;
 
     public String getFullname() {

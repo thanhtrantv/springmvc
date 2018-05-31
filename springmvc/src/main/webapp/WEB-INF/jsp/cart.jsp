@@ -9,37 +9,7 @@
 
 </head>
 <body>
-	<header>
-      <div class="collapse bg-dark" id="navbarHeader">
-        <div class="container">
-          <div class="row">
-            <div class="col-sm-8 col-md-7 py-4">
-              <h4 class="text-white">About</h4>
-              <p class="text-muted">Add some information about the album below, the author, or any other background context. Make it a few sentences long so folks can pick up some informative tidbits. Then, link them off to some social networking sites or contact information.</p>
-            </div>
-            <div class="col-sm-4 offset-md-1 py-4">
-              <h4 class="text-white">Contact</h4>
-              <ul class="list-unstyled">
-                <li><a href="#" class="text-white">Follow on Twitter</a></li>
-                <li><a href="#" class="text-white">Like on Facebook</a></li>
-                <li><a href="#" class="text-white">Email me</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="navbar navbar-dark bg-dark box-shadow">
-        <div class="container d-flex justify-content-between">
-          <a href="home" class="navbar-brand d-flex align-items-center">
-				<img src="images/money-bag.svg" style="width: 40px;  height: 40px;"/>
-				<strong>Shop</strong>
-			</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-        </div>
-      </div>
-    </header>
+	<jsp:include page="header.jsp" />
 	<main>
 		<div class="container">
 			<div style="margin:10px 0;">
@@ -102,29 +72,31 @@
 								<td></td>
 								<td></td>
 								<td>
-                                    <button type="button" class="btn btn-default">
+                                    <a href="home" class="btn btn-default">
                                         <span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
-                                    </button>
+                                    </a>
                                 </td>
 								<td>
-                                    <button type="button" class="btn btn-success">
+                                    <a href="/cart/checkout"  class="btn btn-success">
                                         Checkout <span class="glyphicon glyphicon-play"></span>
-                                    </button>
+                                    </a>
                                 </td>
 							</tr>
 						</tbody>
 					</table>
 				</div>
+				<div class="col-md-12">
+					<label for="fname">First Name</label>
+					<input type="text" id="fname" name="firstname" placeholder="Your name..">
+
+					<label for="lname">Last Name</label>
+					<input type="text" id="lname" name="lastname" placeholder="Your last name..">
+
+				</div>
 			</div>
         </div>
 	</main>
-	<footer>
-		<section id="footer">
-				<div class="container">
-					<p>Copyright Msita.</p>
-				  </div>
-			</section>
-	</footer>
+	<jsp:include page="footer.jsp" />
 	<!-- Placed at the end of the document so the pages load faster -->
 	<script src="javascript/jquery-3.3.1.min.js">  </script>
 	<script src="javascript/bootstrap.min.js">  </script>
