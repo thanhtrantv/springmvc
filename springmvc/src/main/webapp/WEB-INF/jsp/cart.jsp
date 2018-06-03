@@ -77,7 +77,7 @@
                                     </a>
                                 </td>
 								<td>
-                                    <a href="/cart/checkout"  class="btn btn-success">
+                                    <a href="cart/checkout"  class="btn btn-success">
                                         Checkout <span class="glyphicon glyphicon-play"></span>
                                     </a>
                                 </td>

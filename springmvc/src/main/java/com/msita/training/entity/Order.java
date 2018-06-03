@@ -13,6 +13,7 @@ import java.util.List;
 @Table(name="order", schema="training")
 public class Order implements Serializable {
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name="ido")
     private Integer ido;
 
@@ -69,4 +70,6 @@ public class Order implements Serializable {
     public void setUser(User user) {
         this.user = user;
     }
+
+
 }

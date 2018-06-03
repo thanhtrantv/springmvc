@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
  * Created by thanhtran on 5/27/2018.
  */
 @Entity
-@Table(name="order-product", schema="training")
+@Table(name="order_product", schema="training")
 public class OrderProduct implements Serializable {
     @EmbeddedId
     private OrderProductKey key;
@@ -18,10 +18,6 @@ public class OrderProduct implements Serializable {
 
     @Column(name="price")
     private Integer price;
-
-    @Column(name="date")
-    private LocalDateTime date;
-
 
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="ido",referencedColumnName="ido", nullable=false, insertable=false, updatable=false)
@@ -71,16 +67,8 @@ public class OrderProduct implements Serializable {
         this.price = price;
     }
 
-    public LocalDateTime getDate() {
-        return date;
-    }
-
-    public void setDate(LocalDateTime date) {
-        this.date = date;
-    }
-
     @PrePersist
-    public void setCandidateProductId() {
+    public void setProductId() {
         if (this.getKey().getIdo() == null) {
             this.getKey().setIdo(this.order.getIdo());
         }

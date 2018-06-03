@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -84,6 +85,7 @@ public class CartController {
             page = "home";
         }else{
             Order order =  new Order();
+            List<OrderProduct> lstOrderProduct = new ArrayList<>();
             int sum = 0;
             for(Product prod : lst){
                 sum+=(prod.getQuantity()*prod.getPrice());
@@ -95,15 +97,18 @@ public class CartController {
 
                 orderProduct.setKey(key);
 
-                orderProduct.setDate(LocalDateTime.now());
                 orderProduct.setPrice(prod.getPrice());
                 orderProduct.setQuantity(prod.getQuantity());
                 if(order.getLstOrderProduct()==null)
                     order.setLstOrderProduct(new ArrayList<>());
-                order.getLstOrderProduct().add(orderProduct);
+                lstOrderProduct.add(orderProduct);
             }
             order.setSum(sum);
             orderService.saveOrder(order);
+            for(OrderProduct orderProduct : lstOrderProduct){
+                orderProduct.getKey().setIdo(order.getIdo());
+                orderService.saveOrderProduct(orderProduct);
+            }
         }
         return "redirect:/"+page;
     }
